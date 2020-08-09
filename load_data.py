@@ -91,7 +91,6 @@ def preprocessing_train_data(train, dataset_name):
             help_find_word[word] = True
             vector = np.asarray(values[1:], "float32")
             embeddings_dict[word] = vector
-
     print('Padding training dataset')
     train_sentences = pad_input(train_sentences, help_find_word)
     print('Word embedding in training dataset by pre-trained model')
@@ -150,9 +149,9 @@ def load_dataset(dataset_name=None, batch_size=400):
 
     vocab_size = len(train_data)
     train_size = int(0.8 * len(train_data))
-    np.random.shuffle(train_data)
-    X_train, y_train = train_data[:train_size], train_labels[:train_size]
-    X_val, y_val = train_data[train_size:], train_labels[train_size:]
+    permutate_ind = np.random.permutation(len(train_data))
+    X_train, y_train = train_data[permutate_ind[:train_size]], train_labels[permutate_ind[:train_size]]
+    X_val, y_val = train_data[permutate_ind[train_size:]], train_labels[permutate_ind[train_size:]]
     train_dataset = TensorDataset(torch.from_numpy(X_train), torch.from_numpy(y_train))
     val_dataset = TensorDataset(torch.from_numpy(X_val), torch.from_numpy(y_val))
     test_dataset = TensorDataset(torch.from_numpy(test_data), torch.from_numpy(test_labels))
