@@ -81,6 +81,8 @@ def preprocessing_train_data(train, dataset_name):
                 help_find_word[tmp] = False
         if (dataset_name == 'AGNews' or dataset_name is None) and (i + 1) % 24000 == 0:
             print('tokenize %d%% done in training dataset' % ((i + 1) * 100 / len(sentences)))
+        if dataset_name == 'Yelp' and (i + 1) % 24000 == 0:
+            print('tokenize %d%% done in training dataset' % ((i + 1) * 100 / len(sentences)))
 
     print('Loading pre-trained word-embedding model...')
     embeddings_dict = {}
@@ -146,7 +148,13 @@ def load_dataset(dataset_name=None, batch_size=400):
         print('Loading test data...')
         test = pd.read_csv('./data/ag_news_csv/test.csv', header=None)
         test_data, test_labels = preprocessing_test_data(test, dataset_name, help_find_word, embedding_dicts)
-
+    if dataset_name == 'Yelp':
+        print('Loading training data...')
+        train = pd.read_csv('./data/yelp_review_polarity_csv/train.csv', header=None)[:120000]
+        train_data, train_labels, help_find_word, embedding_dicts = preprocessing_train_data(train, dataset_name)
+        print('Loading test data...')
+        test = pd.read_csv('./data/yelp_review_polarity_csv/test.csv', header=None)[:7600]
+        test_data, test_labels = preprocessing_test_data(test, dataset_name, help_find_word, embedding_dicts)
     vocab_size = len(train_data)
     train_size = int(0.8 * len(train_data))
     permutate_ind = np.random.permutation(len(train_data))
@@ -162,5 +170,5 @@ def load_dataset(dataset_name=None, batch_size=400):
     return vocab_size, train_loader, val_loader, test_loader
 
 if __name__ == '__main__':
-    load_dataset()
+    load_dataset('Yelp')
     pass
