@@ -8,6 +8,7 @@ import numpy as np
 from RCNN.model import RCNN
 from CNN.model import CNN
 from LSTM_Attn.model import LSTMAttention
+from LSTM_Attn_GRU.model import LSTMAttnGRU
 
 def timeSince(since):
     now = time.time()
@@ -62,7 +63,8 @@ def training(model, n_epochs, criterion, optimizer, device, print_every=200):
                     print('Validation loss decreased: %.4f -> %.4f' % (min_loss, val_loss))
                     min_loss = val_loss
                     print('Saving model...')
-                    torch.save(model.state_dict(), './LSTM_Attn/lstm_attn.pt')
+                    torch.save(model.state_dict(), './LSTM_Attn_GRU/lstm_attn_gru.pt')
+                    # torch.save(model.state_dict(), './LSTM_Attn/lstm_attn.pt')
                     # torch.save(model.state_dict(), './CNN/cnn.pt')
                     # torch.save(model.state_dict(), './RCNN/rcnn.pt')
                 running_loss = 0.0
@@ -81,7 +83,7 @@ def computInputSize(H, W):
 
 
 n_epochs = 15
-learning_rate = 0.001
+learning_rate = 0.0008
 batch_size = 400
 output_size = 4
 vocab_size, train_loader, val_loader, test_loader = load_data.load_dataset()
@@ -90,11 +92,13 @@ criterion = nn.CrossEntropyLoss()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # model = CNN(input_size, output_size).to(device)
 # model = RCNN(output_size).to(device)
-model = LSTMAttention(output_size).to(device)
+# model = LSTMAttention(output_size).to(device)
+model = LSTMAttnGRU(output_size).to(device)
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 print('We use', device)
 training(model, n_epochs, criterion, optimizer, device)
 # model.load_state_dict(torch.load('./RCNN/rcnn.pt'))
-model.load_state_dict(torch.load('./LSTM_Attn/lstm_attn.pt'))
+# model.load_state_dict(torch.load('./LSTM_Attn/lstm_attn.pt'))
+model.load_state_dict(torch.load('./LSTM_Attn_GRU/lstm_attn_gru.pt'))
 test_loss, test_acc = evalating(model, criterion, device, test_loader)
 print('test loss: %.3f, test accuracy: %.2f%%' % (test_loss, test_acc))
