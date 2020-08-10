@@ -1,18 +1,19 @@
 import torch.nn as nn
 import torch.nn.functional as F
+from CNN.config_CNN import Config
 
 class CNN(nn.Module):
-    def __init__(self, config, input_size, output_size):
+    def __init__(self, input_size, output_size):
         super(CNN, self).__init__()
         self.input_size = input_size
 
-        self.conv1 = nn.Conv2d(1, config.conv1_num_filter, config.conv1_size)
-        self.conv2 = nn.Conv2d(config.conv1_num_filter, config.conv2_num_filter, config.conv2_size)
-        self.conv3 = nn.Conv2d(config.conv2_num_filter, config.conv3_num_filter, config.conv3_size)
-        self.maxpool = nn.MaxPool2d(config.maxpool_size, config.maxpool_size)
-        self.fc1 = nn.Linear(input_size, config.fc1_size)
-        self.fc2 = nn.Linear(config.fc1_size, config.fc2_size)
-        self.fc3 = nn.Linear(config.fc2_size, output_size)
+        self.conv1 = nn.Conv2d(1, Config.conv1_num_filter, Config.conv1_size)
+        self.conv2 = nn.Conv2d(Config.conv1_num_filter, Config.conv2_num_filter, Config.conv2_size)
+        self.conv3 = nn.Conv2d(Config.conv2_num_filter, Config.conv3_num_filter, Config.conv3_size)
+        self.maxpool = nn.MaxPool2d(Config.maxpool_size, Config.maxpool_size)
+        self.fc1 = nn.Linear(input_size, Config.fc1_size)
+        self.fc2 = nn.Linear(Config.fc1_size, Config.fc2_size)
+        self.fc3 = nn.Linear(Config.fc2_size, output_size)
 
     def forward(self, x):
         x = x.unsqueeze(1)

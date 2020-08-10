@@ -1,12 +1,12 @@
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
-
+from RCNN.config_RCNN import Config
 
 class RCNN(nn.Module):
-    def __init__(self, config, output_size):
+    def __init__(self, output_size):
         super(RCNN, self).__init__()
-        self.config = config
+        self.config = Config
         self.output_size = output_size
 
         self.lstm = nn.LSTM(input_size=self.config.embedding_size, hidden_size=self.config.hidden_size, num_layers=self.config.n_layers,
