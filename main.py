@@ -82,11 +82,11 @@ def computInputSize(H, W):
     return 3 * H * W
 
 
-n_epochs = 15
-learning_rate = 0.0008
+n_epochs = 30
+learning_rate = 0.003
 batch_size = 400
-output_size = 4
-vocab_size, train_loader, val_loader, test_loader = load_data.load_dataset('Yelp')
+output_size = 2
+vocab_size, train_loader, val_loader, test_loader = load_data.load_dataset("Yelp")
 input_size = computInputSize(300, 60)
 criterion = nn.CrossEntropyLoss()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
