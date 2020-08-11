@@ -35,13 +35,13 @@ def evalating(model, criterion, device, loader):
 
     return total_epoch_loss / len(loader), total_epoch_acc / len(loader)
 
-def training(model, n_epochs, criterion, optimizer, device, print_every=200):
+def training(model, n_epochs, criterion, optimizer, device, print_every=240):
     start = time.time()
     min_loss = np.inf
     for epoch in range(n_epochs):
         running_loss = 0
         running_acc = 0
-        steps = 0
+        steps = 1
         model.train()
         for inputs, label in train_loader:
             optimizer.zero_grad()
@@ -56,6 +56,7 @@ def training(model, n_epochs, criterion, optimizer, device, print_every=200):
             steps += 1
             running_loss += loss.item()
             running_acc += acc.item()
+
             if steps % print_every == 0:
                 val_loss, val_acc = evalating(model, criterion, device, val_loader)
                 print('%d/%d (%s) train loss: %.3f, train accuracy: %.2f%%, val loss: %.3f, val accuracy: %.2f%%' %
@@ -64,7 +65,7 @@ def training(model, n_epochs, criterion, optimizer, device, print_every=200):
                     print('Validation loss decreased: %.4f -> %.4f' % (min_loss, val_loss))
                     min_loss = val_loss
                     print('Saving model...')
-                    # torch.save(model.state_dict(), './LSTM_Attn_GRU/lstm_attn_gru.pt')
+                    torch.save(model.state_dict(), './LSTM_Attn_GRU/lstm_attn_gru.pt')
                     # torch.save(model.state_dict(), './LSTM_Attn/lstm_attn.pt')
                     # torch.save(model.state_dict(), './CNN/cnn.pt')
                     torch.save(model.state_dict(), './RCNN/rcnn.pt')
@@ -93,20 +94,20 @@ dataset = sys.argv[1]'''
 n_epochs = 20
 learning_rate = 0.001
 batch_size = 400
-output_size = 14
-vocab_size, train_loader, val_loader, test_loader = load_data.load_dataset('Dbpedia')
+output_size = 2
+vocab_size, train_loader, val_loader, test_loader = load_data.load_dataset('Amazon_Pop')
 input_size = computInputSize(300, 60)
 criterion = nn.CrossEntropyLoss()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # model = CNN(input_size, output_size).to(device)
-model = RCNN(output_size).to(device)
+# model = RCNN(output_size).to(device)
 # model = LSTMAttention(output_size).to(device)
-# model = LSTMAttnGRU(output_size).to(device)
+model = LSTMAttnGRU(output_size).to(device)
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 print('We use', device)
 training(model, n_epochs, criterion, optimizer, device)
-model.load_state_dict(torch.load('./RCNN/rcnn.pt'))
+# model.load_state_dict(torch.load('./RCNN/rcnn.pt'))
 # model.load_state_dict(torch.load('./LSTM_Attn/lstm_attn.pt'))
-# model.load_state_dict(torch.load('./LSTM_Attn_GRU/lstm_attn_gru.pt'))
+model.load_state_dict(torch.load('./LSTM_Attn_GRU/lstm_attn_gru.pt'))
 test_loss, test_acc = evalating(model, criterion, device, test_loader)
 print('test loss: %.3f, test accuracy: %.2f%%' % (test_loss, test_acc))
