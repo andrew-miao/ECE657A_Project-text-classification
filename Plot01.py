@@ -39,7 +39,7 @@ if plot_obj == 'loss':
     ax.set_ylabel('Loss Value')
 else:
     ax.set_title('Accuracy for 4 models in 4 testing datasets')
-    ax.set_ylabel('Accuracy Rate')
+    ax.set_ylabel('Accuracy Rate (%)')
 
 ax.set_title('')
 ax.set_xticks(x)
