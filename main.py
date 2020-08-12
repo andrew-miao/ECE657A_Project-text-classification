@@ -10,6 +10,7 @@ from CNN.model import CNN
 from LSTM_Attn.model import LSTMAttention
 from LSTM_Attn_GRU.model import LSTMAttnGRU
 import sys
+from torch.utils.tensorboard import SummaryWriter
 
 def timeSince(since):
     now = time.time()
@@ -38,10 +39,10 @@ def evalating(model, criterion, device, loader):
 def training(model, n_epochs, criterion, optimizer, device, print_every=240):
     start = time.time()
     min_loss = np.inf
+    steps = 1
     for epoch in range(n_epochs):
         running_loss = 0
         running_acc = 0
-        steps = 1
         model.train()
         for inputs, label in train_loader:
             optimizer.zero_grad()
@@ -68,10 +69,17 @@ def training(model, n_epochs, criterion, optimizer, device, print_every=240):
                     torch.save(model.state_dict(), './LSTM_Attn_GRU/lstm_attn_gru.pt')
                     # torch.save(model.state_dict(), './LSTM_Attn/lstm_attn.pt')
                     # torch.save(model.state_dict(), './CNN/cnn.pt')
-                    torch.save(model.state_dict(), './RCNN/rcnn.pt')
+                    # torch.save(model.state_dict(), './RCNN/rcnn.pt')
+
+                writer.add_scalar('Train loss', running_loss / print_every, steps)
+                writer.add_scalar('Val loss', val_loss, steps)
+                writer.add_scalar('Train accuracy', running_acc / print_every, steps)
+                writer.add_scalar('Val accuracy', val_acc, steps)
                 running_loss = 0.0
                 running_acc = 0.0
                 model.train()
+
+
 
 def computInputSize(H, W):
     H = math.floor((H - 6) / 2) + 1
@@ -90,12 +98,12 @@ def computInputSize(H, W):
 datasets = ['AGNews', 'Amazon_Pop', 'Yelp_Pop']
 dataset = sys.argv[1]'''
 
-
-n_epochs = 20
+writer = SummaryWriter()
+n_epochs = 15
 learning_rate = 0.001
 batch_size = 400
-output_size = 2
-vocab_size, train_loader, val_loader, test_loader = load_data.load_dataset('Amazon_Pop')
+output_size = 14
+vocab_size, train_loader, val_loader, test_loader = load_data.load_dataset('Dbpedia')
 input_size = computInputSize(300, 60)
 criterion = nn.CrossEntropyLoss()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -103,11 +111,14 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # model = RCNN(output_size).to(device)
 # model = LSTMAttention(output_size).to(device)
 model = LSTMAttnGRU(output_size).to(device)
+# model = PseTranslate(output_size).to(device)
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 print('We use', device)
 training(model, n_epochs, criterion, optimizer, device)
 # model.load_state_dict(torch.load('./RCNN/rcnn.pt'))
 # model.load_state_dict(torch.load('./LSTM_Attn/lstm_attn.pt'))
+writer.flush()
+writer.close()
 model.load_state_dict(torch.load('./LSTM_Attn_GRU/lstm_attn_gru.pt'))
 test_loss, test_acc = evalating(model, criterion, device, test_loader)
 print('test loss: %.3f, test accuracy: %.2f%%' % (test_loss, test_acc))

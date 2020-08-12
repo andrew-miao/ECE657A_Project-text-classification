@@ -166,9 +166,9 @@ def load_dataset(dataset_name=None, batch_size=400):
 
     if dataset_name is None or dataset_name == 'AGNews':
         dataset_name = 'ag_news_csv'
-    elif dataset_name == 'Yelp_Pop':
+    elif dataset_name == 'Yelp':
         dataset_name = 'yelp_review_polarity_csv'
-    elif dataset_name == 'Amazon_Pop':
+    elif dataset_name == 'Amazon':
         dataset_name = 'amazon_review_polarity_csv'
     elif dataset_name == 'Dbpedia':
         dataset_name = 'dbpedia_csv'
@@ -188,5 +188,5 @@ def load_dataset(dataset_name=None, batch_size=400):
     return vocab_size, train_loader, val_loader, test_loader
 
 if __name__ == '__main__':
-    load_dataset('Yelp_Pop')
+    load_dataset('AGNews')
     pass

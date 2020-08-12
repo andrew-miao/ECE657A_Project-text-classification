@@ -14,7 +14,7 @@ cnn = []
 rcnn = []
 lstm_attn = []
 lstm_attn_gru = []
-datasets = ['AGNews', 'Dbpedia', 'Amazon_Pop', 'Yelp_Pop']
+datasets = ['AGNews', 'Dbpedia', 'Amazon', 'Yelp']
 for dataset in datasets:
     if plot_obj == 'loss':
         test_list, _ = Exp01.experiment(dataset)
@@ -31,22 +31,27 @@ width = 0.2  # the width of the bars
 fig, ax = plt.subplots()
 rects1 = ax.bar(x - 0.2, cnn, width, label='CNN')
 rects2 = ax.bar(x, rcnn, width, label='RCNN')
-rects3 = ax.bar(x + 0.2, lstm_attn, width, label='LSTM+Attention')
-rects4 = ax.bar(x + 0.4, lstm_attn_gru, width, label='LSTM+Attention+GRU')
+rects3 = ax.bar(x + 0.2, lstm_attn, width, label='LSTM+Attn')
+rects4 = ax.bar(x + 0.4, lstm_attn_gru, width, label='LSTM+Attn+GRU')
 
 if plot_obj == 'loss':
-    ax.set_ylabel('Loss value for 4 models in 4 testing datasets')
+    ax.set_title('Loss value for 4 models in 4 testing datasets')
+    ax.set_ylabel('Loss Value')
 else:
-    ax.set_ylabel('Accuracy for 4 models in 4 testing datasets')
-ax.set_title('Scores by group and gender')
+    ax.set_title('Accuracy for 4 models in 4 testing datasets')
+    ax.set_ylabel('Accuracy Rate')
+
+ax.set_title('')
 ax.set_xticks(x)
 ax.set_xticklabels(datasets)
 fig.tight_layout()
+ax.legend(loc='best')
+'''
 # Shrink current axis by 20%
 box = ax.get_position()
 ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 
 # Put a legend to the right of the current axis
 ax.legend(loc='center left', bbox_to_anchor=(1, 0.6))
-
+'''
 plt.show()
