@@ -2,16 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a03da6d0-8f0b-4fee-818a-aa43802c07c1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Exp01.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plot01.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CNN/cnn.pt" beforeDir="false" afterPath="$PROJECT_DIR$/CNN/cnn.pt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LSTM_Attn/lstm_attn.pt" beforeDir="false" afterPath="$PROJECT_DIR$/LSTM_Attn/lstm_attn.pt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LSTM_Attn_GRU/lstm_attn_gru.pt" beforeDir="false" afterPath="$PROJECT_DIR$/LSTM_Attn_GRU/lstm_attn_gru.pt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RCNN/rcnn.pt" beforeDir="false" afterPath="$PROJECT_DIR$/RCNN/rcnn.pt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/load_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/load_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -99,7 +108,9 @@
       <workItem from="1596839144059" duration="12000" />
       <workItem from="1597103016429" duration="2850000" />
       <workItem from="1597106697899" duration="10557000" />
-      <workItem from="1597170414381" duration="9042000" />
+      <workItem from="1597170414381" duration="9434000" />
+      <workItem from="1597181972973" duration="7860000" />
+      <workItem from="1597193319668" duration="2205000" />
     </task>
     <servers />
   </component>
@@ -119,38 +130,38 @@
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="1096" y="503" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1597105258975" />
-    <state width="2447" height="397" key="GridCell.Tab.0.bottom" timestamp="1597181509112">
+    <state width="2447" height="650" key="GridCell.Tab.0.bottom" timestamp="1597182192629">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state width="2447" height="397" key="GridCell.Tab.0.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1597181509112" />
-    <state width="2447" height="397" key="GridCell.Tab.0.center" timestamp="1597181509112">
+    <state width="2447" height="650" key="GridCell.Tab.0.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1597182192629" />
+    <state width="2447" height="650" key="GridCell.Tab.0.center" timestamp="1597182192629">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state width="2447" height="397" key="GridCell.Tab.0.center/67.27.2493.1413@67.27.2493.1413" timestamp="1597181509112" />
-    <state width="2447" height="397" key="GridCell.Tab.0.left" timestamp="1597181509111">
+    <state width="2447" height="650" key="GridCell.Tab.0.center/67.27.2493.1413@67.27.2493.1413" timestamp="1597182192629" />
+    <state width="2447" height="650" key="GridCell.Tab.0.left" timestamp="1597182192629">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state width="2447" height="397" key="GridCell.Tab.0.left/67.27.2493.1413@67.27.2493.1413" timestamp="1597181509111" />
-    <state width="2447" height="397" key="GridCell.Tab.0.right" timestamp="1597181509112">
+    <state width="2447" height="650" key="GridCell.Tab.0.left/67.27.2493.1413@67.27.2493.1413" timestamp="1597182192629" />
+    <state width="2447" height="650" key="GridCell.Tab.0.right" timestamp="1597182192629">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state width="2447" height="397" key="GridCell.Tab.0.right/67.27.2493.1413@67.27.2493.1413" timestamp="1597181509112" />
-    <state width="2447" height="650" key="GridCell.Tab.1.bottom" timestamp="1597181211229">
+    <state width="2447" height="650" key="GridCell.Tab.0.right/67.27.2493.1413@67.27.2493.1413" timestamp="1597182192629" />
+    <state width="2447" height="650" key="GridCell.Tab.1.bottom" timestamp="1597182192630">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state width="2447" height="650" key="GridCell.Tab.1.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1597181211229" />
-    <state width="2447" height="650" key="GridCell.Tab.1.center" timestamp="1597181211229">
+    <state width="2447" height="650" key="GridCell.Tab.1.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1597182192630" />
+    <state width="2447" height="650" key="GridCell.Tab.1.center" timestamp="1597182192629">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state width="2447" height="650" key="GridCell.Tab.1.center/67.27.2493.1413@67.27.2493.1413" timestamp="1597181211229" />
-    <state width="2447" height="650" key="GridCell.Tab.1.left" timestamp="1597181211229">
+    <state width="2447" height="650" key="GridCell.Tab.1.center/67.27.2493.1413@67.27.2493.1413" timestamp="1597182192629" />
+    <state width="2447" height="650" key="GridCell.Tab.1.left" timestamp="1597182192629">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state width="2447" height="650" key="GridCell.Tab.1.left/67.27.2493.1413@67.27.2493.1413" timestamp="1597181211229" />
-    <state width="2447" height="650" key="GridCell.Tab.1.right" timestamp="1597181211229">
+    <state width="2447" height="650" key="GridCell.Tab.1.left/67.27.2493.1413@67.27.2493.1413" timestamp="1597182192629" />
+    <state width="2447" height="650" key="GridCell.Tab.1.right" timestamp="1597182192630">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
-    <state width="2447" height="650" key="GridCell.Tab.1.right/67.27.2493.1413@67.27.2493.1413" timestamp="1597181211229" />
+    <state width="2447" height="650" key="GridCell.Tab.1.right/67.27.2493.1413@67.27.2493.1413" timestamp="1597182192630" />
     <state width="1246" height="707" key="XDebugger.FullValuePopup" timestamp="1597180918361">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
@@ -168,7 +179,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ECE657A_Project_text_classification$main.coverage" NAME="main Coverage Results" MODIFIED="1597181509105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE657A_Project_text_classification$main.coverage" NAME="main Coverage Results" MODIFIED="1597182174646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE657A_Project_text_classification$load_data.coverage" NAME="load_data Coverage Results" MODIFIED="1597179603990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
