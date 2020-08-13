@@ -2,6 +2,7 @@ class Config(object):
     embedding_size = 300
     n_layers = 1
     hidden_size = 150
+    gru_input_size =120
     gru_hidden_size = 128
     fc1_size = 150
     fc2_size = 60
