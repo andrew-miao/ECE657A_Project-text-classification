@@ -9,7 +9,7 @@ from RCNN.model import RCNN
 from CNN.model import CNN
 from LSTM_Attn.model import LSTMAttention
 from LSTM_Attn_GRU.model import LSTMAttnGRU
-import sys
+from sklearn.metrics import f1_score
 
 batch_size = 400
 
@@ -73,6 +73,19 @@ def training(model, n_epochs, criterion, optimizer, device, path, train_loader, 
                 running_acc = 0.0
                 model.train()
 
+def computeF1Score(model, device, loader):
+    f1 = 0.0
+    model.eval()
+    for inputs, labels in loader:
+        inputs, labels = inputs.to(device, dtype=torch.float), labels.to(device, dtype=torch.long)
+        output = model(inputs)
+        predict = torch.argmax(output, 1)
+        f1 += f1_score(labels, predict, average='macro')
+
+    return f1 / len(loader)
+
+
+
 def computInputSize(H, W):
     H = math.floor((H - 6) / 2) + 1
     W = math.floor((W - 6) / 2) + 1
@@ -114,12 +127,11 @@ def experiment(dataset_name, data_size=1.0):
         training(model, n_epochs, criterion, optimizer, device, path, train_loader, val_loader, print_every)
         counter += 1
 
-    test_loss_list = []
-    test_acc_list = []
+    device = torch.device('cpu')
+    f1_list = []
     for model, path in zip(model_list, model_path):
+        model = model.to(device)
         model.load_state_dict(torch.load(path))
-        test_loss, test_acc = evalating(model, criterion, device, test_loader)
-        test_loss_list.append(test_loss)
-        test_acc_list.append(test_acc)
+        f1_list.append(computeF1Score(model, device, test_loader))
 
-    return test_loss_list, test_acc_list
+    return f1_list

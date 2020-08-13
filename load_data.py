@@ -137,11 +137,11 @@ def preprocessing_test_data(test, dataset_name, help_find_word, embeddings_dict)
     test_data = word_embed(test_sentences, embeddings_dict)
     return test_data, test_labels
 
-def generateTrainData(dataset_name):
+def generateTrainData(dataset_name, data_size):
     path = './data/' + dataset_name + '/train.csv'
     train = pd.read_csv(path, header=None)
     random_ind = np.random.permutation(len(train))
-    train = train.iloc[random_ind][:120000]
+    train = train.iloc[random_ind][:int(data_size * 120000)]
     train_data, train_labels, help_find_word, embedding_dicts = preprocessing_train_data(train, dataset_name)
     return train_data, train_labels, help_find_word, embedding_dicts
 
@@ -153,7 +153,7 @@ def generateTestData(dataset_name, help_find_word, embedding_dicts):
     test_data, test_labels = preprocessing_test_data(test, dataset_name, help_find_word, embedding_dicts)
     return test_data, test_labels
 
-def load_dataset(dataset_name=None, batch_size=400):
+def load_dataset(dataset_name=None, batch_size=400, data_size=1.0):
     """
     dataset_name: the dataset that user want to use. Default is AGNews
     return:
@@ -173,7 +173,7 @@ def load_dataset(dataset_name=None, batch_size=400):
     elif dataset_name == 'Dbpedia':
         dataset_name = 'dbpedia_csv'
 
-    train_data, train_labels, help_find_word, embedding_dicts = generateTrainData(dataset_name)
+    train_data, train_labels, help_find_word, embedding_dicts = generateTrainData(dataset_name, data_size)
     test_data, test_labels = generateTestData(dataset_name, help_find_word, embedding_dicts)
 
     vocab_size = len(train_data)
@@ -188,5 +188,5 @@ def load_dataset(dataset_name=None, batch_size=400):
     return vocab_size, train_loader, val_loader, test_loader
 
 if __name__ == '__main__':
-    load_dataset('AGNews')
+    load_dataset('AGNews', data_size=0.2)
     pass

@@ -1,25 +1,15 @@
 import matplotlib.pyplot as plt
-import Exp01
-import sys
+import Exp02
 import numpy as np
 
 
-if len(sys.argv) != 2:
-	sys.exit('Use: python Plot01.py [loss or acc]')
-
-plot_obj = sys.argv[1]
-if plot_obj != 'loss' and plot_obj != 'acc':
-    sys.exit('Use: python Plot01.py [loss or acc]')
 cnn = []
 rcnn = []
 lstm_attn = []
 lstm_attn_gru = []
 datasets = ['AGNews', 'Dbpedia', 'Amazon', 'Yelp']
 for dataset in datasets:
-    if plot_obj == 'loss':
-        test_list, _ = Exp01.experiment(dataset)
-    else:
-        _, test_list = Exp01.experiment(dataset)
+    test_list = Exp02.experiment(dataset)
     cnn.append(test_list[0])
     rcnn.append(test_list[1])
     lstm_attn.append(test_list[2])
@@ -34,11 +24,7 @@ rects2 = ax.bar(x, rcnn, width, label='RCNN')
 rects3 = ax.bar(x + 0.2, lstm_attn, width, label='LSTM+Attn')
 rects4 = ax.bar(x + 0.4, lstm_attn_gru, width, label='LSTM+Attn+GRU')
 
-if plot_obj == 'loss':
-    ax.set_ylabel('Loss Value')
-else:
-    ax.set_ylabel('Accuracy Rate (%)')
-
+ax.set_ylabel('Macro-F1 Score')
 ax.set_title('')
 ax.set_xticks(x)
 ax.set_xticklabels(datasets)
