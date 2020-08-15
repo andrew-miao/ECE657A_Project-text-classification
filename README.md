@@ -17,16 +17,18 @@ Here is the performance of these models in these datasets:
 | Yelp | 75.29% | 85.12% | 85.20% | 85.45% |
 
 ## Requirements
-> * Python == 3.7.6
-> * Pytorch == 1.5.1
-> * Numpy == 1.18.1
+* Python == 3.7.6
+* Pytorch == 1.5.1
+ * Numpy == 1.18.1
 
 ## Usage
 Once you clone this repo, you can run the main.py to train the specify model for the dataset.
 
 For example,
 
-``python main.py lstm_attn agnews``
+```
+python main.py lstm_attn agnews
+```
 
 To simplify commands, we use 'cnn', 'rcnn', 'lstm_attn', 'lstm_gru' as the model names.
 The datasets names are 'agnews', 'dbpeida', 'amazon', 'yelp'.
