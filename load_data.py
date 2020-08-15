@@ -164,13 +164,13 @@ def load_dataset(dataset_name=None, batch_size=400, data_size=1.0):
         test_loader: DataLoader for testing set.
     """
 
-    if dataset_name is None or dataset_name == 'AGNews':
+    if dataset_name is None or dataset_name == 'agnews':
         dataset_name = 'ag_news_csv'
-    elif dataset_name == 'Yelp':
+    elif dataset_name == 'yelp':
         dataset_name = 'yelp_review_polarity_csv'
-    elif dataset_name == 'Amazon':
+    elif dataset_name == 'amazon':
         dataset_name = 'amazon_review_polarity_csv'
-    elif dataset_name == 'Dbpedia':
+    elif dataset_name == 'dbpedia':
         dataset_name = 'dbpedia_csv'
 
     train_data, train_labels, help_find_word, embedding_dicts = generateTrainData(dataset_name, data_size)
@@ -188,5 +188,5 @@ def load_dataset(dataset_name=None, batch_size=400, data_size=1.0):
     return vocab_size, train_loader, val_loader, test_loader
 
 if __name__ == '__main__':
-    load_dataset('AGNews', data_size=0.2)
+    load_dataset('Yelp', data_size=1.0)
     pass
