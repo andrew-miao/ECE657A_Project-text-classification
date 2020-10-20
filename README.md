@@ -1,5 +1,5 @@
 # ECE657A Project: text classification
-The project for the course ECE657A in spring 2020 at uwaterloo.
+The project for the course ECE657A in spring 2020 at uwaterloo, report is [here](./ECE657A_Final_Project.pdf).
 
 This repo contains several models, including CNN, RCNN, LSTM with attention, and Encoder-Decoder (LSTM as encoder, GRU as Decoder with attention mechansim), to solve the text-classification task.
 We implement these models in Pytorch framework. 
